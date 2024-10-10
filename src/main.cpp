@@ -56,7 +56,6 @@ void SwitchKeyboardState(HMUI::UIKeyboard* keyboard, int switchIdx) {
 }
 
 MAKE_HOOK_MATCH(UIKeyboard_Awake, &HMUI::UIKeyboard::Awake, void, HMUI::UIKeyboard* self) {
-
     auto numpad = self->transform->Find("Numpad");
 
     for (auto key : numpad->GetComponentsInChildren<HMUI::UIKeyboardKey*>(true)) {
@@ -85,12 +84,13 @@ MAKE_HOOK_MATCH(UIKeyboard_Awake, &HMUI::UIKeyboard::Awake, void, HMUI::UIKeyboa
     UIKeyboard_Awake(self);
 }
 
-MAKE_HOOK_MATCH(UIKeyboardManager_OpenKeyboardFor,
+MAKE_HOOK_MATCH(
+    UIKeyboardManager_OpenKeyboardFor,
     &GlobalNamespace::UIKeyboardManager::OpenKeyboardFor,
     void,
     GlobalNamespace::UIKeyboardManager* self,
-    HMUI::InputFieldView* input) {
-
+    HMUI::InputFieldView* input
+) {
     UIKeyboardManager_OpenKeyboardFor(self, input);
 
     keyboardState[self->_uiKeyboard] = 0;
@@ -98,7 +98,6 @@ MAKE_HOOK_MATCH(UIKeyboardManager_OpenKeyboardFor,
 }
 
 MAKE_HOOK_MATCH(UIKeyboard_HandleKeyPress, &HMUI::UIKeyboard::HandleKeyPress, void, HMUI::UIKeyboard* self, UnityEngine::KeyCode keyCode) {
-
     UIKeyboard_HandleKeyPress(self, keyCode);
 
     int castCode = (int) keyCode;

@@ -5,7 +5,7 @@
   "info": {
     "name": "MoreButtons",
     "id": "morebuttons",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "url": null,
     "additionalData": {
       "overrideSoName": "libmorebuttons.so",
@@ -42,7 +42,7 @@
   "dependencies": [
     {
       "id": "beatsaber-hook",
-      "versionRange": "^5.1.6",
+      "versionRange": "^5.1.9",
       "additionalData": {
         "extraFiles": [
           "src/inline-hook"
