@@ -93,8 +93,10 @@ static void DisableKeyboardShift(HMUI::UIKeyboard* keyboard) {
 MAKE_HOOK_MATCH(UIKeyboard_Awake, &HMUI::UIKeyboard::Awake, void, HMUI::UIKeyboard* self) {
     auto numpad = self->transform->Find("Numpad");
     auto shift = self->transform->Find("Letters/Row/ShiftKey");
-    if (!numpad || !shift)
+    if (!numpad || !shift || keyboardState.contains(self)) {
+        UIKeyboard_Awake(self);
         return;
+    }
 
     // find the numpad keys and offset them so they go from 0 to -9
     for (auto key : numpad->GetComponentsInChildren<HMUI::UIKeyboardKey*>(true)) {
@@ -148,10 +150,12 @@ MAKE_HOOK_MATCH(
     // reset back to normal numpad on open
     keyboardState[self->_uiKeyboard] = {0, false};
     UpdateKeyboardState(self->_uiKeyboard);
+    DisableKeyboardShift(self->_uiKeyboard);
 }
 
 MAKE_HOOK_MATCH(UIKeyboard_HandleKeyPress, &HMUI::UIKeyboard::HandleKeyPress, void, HMUI::UIKeyboard* self, UnityEngine::KeyCode keyCode) {
-    UIKeyboard_HandleKeyPress(self, keyCode);
+    if ((int) keyCode > 0)
+        UIKeyboard_HandleKeyPress(self, keyCode);
 
     if (!keyboardState.contains(self))
         return;
@@ -196,9 +200,8 @@ MAKE_HOOK_MATCH(UIKeyboard_HandleCapsLockPressed, &HMUI::UIKeyboard::HandleCapsL
 static modloader::ModInfo modInfo = {MOD_ID, VERSION, 0};
 
 extern "C" void setup(CModInfo* info) {
-    info->id = MOD_ID;
-    info->version = VERSION;
-    modInfo.assign(*info);
+    *info = modInfo.to_c();
+    Paper::Logger::RegisterFileContextId(MOD_ID);
 
     logger.info("Completed setup!");
 }
