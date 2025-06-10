@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/QuestPackageManager/QPM.Package/refs/heads/main/qpm.shared.schema.json",
   "config": {
     "version": "0.1.0",
     "sharedDir": "shared",
@@ -17,6 +18,9 @@
       "scripts": {
         "build": [
           "pwsh ./scripts/build.ps1"
+        ],
+        "clean": [
+          "pwsh ./scripts/build.ps1 -clean"
         ],
         "copy": [
           "pwsh ./scripts/copy.ps1",
@@ -39,9 +43,12 @@
           "pwsh ./scripts/pull-tombstone.ps1 -analyze"
         ]
       },
-      "qmodIncludeDirs": [],
+      "qmodIncludeDirs": [
+        "./build",
+        "./extern/libs"
+      ],
       "qmodIncludeFiles": [],
-      "qmodOutput": null
+      "qmodOutput": "MoreButtons.qmod"
     },
     "dependencies": [
       {

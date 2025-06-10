@@ -7,8 +7,10 @@
   "version": "${version}",
   "packageId": "com.beatgames.beatsaber",
   "packageVersion": "1.40.4_5283",
+  "coverImage": "keyboard.png",
   "description": "Overloads your keyboard!",
   "dependencies": [],
+  "lateModFiles": ["${binary}"],
   "libraryFiles": [],
   "fileCopies": []
 }
