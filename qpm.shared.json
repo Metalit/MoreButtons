@@ -7,7 +7,7 @@
     "info": {
       "name": "MoreButtons",
       "id": "morebuttons",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "url": null,
       "additionalData": {
         "overrideSoName": "libmorebuttons.so",
@@ -18,6 +18,9 @@
       "scripts": {
         "build": [
           "pwsh ./scripts/build.ps1"
+        ],
+        "clean": [
+          "pwsh ./scripts/build.ps1 -clean"
         ],
         "copy": [
           "pwsh ./scripts/copy.ps1",
@@ -40,14 +43,18 @@
           "pwsh ./scripts/pull-tombstone.ps1 -analyze"
         ]
       },
-      "qmodIncludeDirs": [],
+      "ndk": "^27.2.12479018",
+      "qmodIncludeDirs": [
+        "build",
+        "extern/libs"
+      ],
       "qmodIncludeFiles": [],
-      "qmodOutput": null
+      "qmodOutput": "MoreButtons.qmod"
     },
     "dependencies": [
       {
         "id": "beatsaber-hook",
-        "versionRange": "^6.4.0",
+        "versionRange": "^6.4.2",
         "additionalData": {}
       },
       {
@@ -59,12 +66,12 @@
       },
       {
         "id": "bs-cordl",
-        "versionRange": "^4006.0.0",
+        "versionRange": "4007.*",
         "additionalData": {}
       },
       {
         "id": "paper2_scotland2",
-        "versionRange": "^4.6.1",
+        "versionRange": "^4.6.4",
         "additionalData": {}
       }
     ]
@@ -92,10 +99,10 @@
     {
       "dependency": {
         "id": "bs-cordl",
-        "versionRange": "=4006.0.0",
+        "versionRange": "=4007.0.0",
         "additionalData": {
           "headersOnly": true,
-          "branchName": "version/v4006_0_0",
+          "branchName": "version/v4007_0_0",
           "compileOptions": {
             "includePaths": [
               "include"
@@ -111,7 +118,7 @@
           }
         }
       },
-      "version": "4006.0.0"
+      "version": "4007.0.0"
     },
     {
       "dependency": {
@@ -132,6 +139,25 @@
         }
       },
       "version": "6.4.2"
+    },
+    {
+      "dependency": {
+        "id": "paper2_scotland2",
+        "versionRange": "=4.6.4",
+        "additionalData": {
+          "soLink": "https://github.com/Fernthedev/paperlog/releases/download/v4.6.4/libpaper2_scotland2.so",
+          "overrideSoName": "libpaper2_scotland2.so",
+          "modLink": "https://github.com/Fernthedev/paperlog/releases/download/v4.6.4/paper2_scotland2.qmod",
+          "branchName": "version/v4_6_4",
+          "compileOptions": {
+            "systemIncludes": [
+              "shared/utfcpp/source"
+            ]
+          },
+          "cmake": false
+        }
+      },
+      "version": "4.6.4"
     },
     {
       "dependency": {
@@ -161,25 +187,6 @@
         }
       },
       "version": "0.4.0"
-    },
-    {
-      "dependency": {
-        "id": "paper2_scotland2",
-        "versionRange": "=4.6.4",
-        "additionalData": {
-          "soLink": "https://github.com/Fernthedev/paperlog/releases/download/v4.6.4/libpaper2_scotland2.so",
-          "overrideSoName": "libpaper2_scotland2.so",
-          "modLink": "https://github.com/Fernthedev/paperlog/releases/download/v4.6.4/paper2_scotland2.qmod",
-          "branchName": "version/v4_6_4",
-          "compileOptions": {
-            "systemIncludes": [
-              "shared/utfcpp/source"
-            ]
-          },
-          "cmake": false
-        }
-      },
-      "version": "4.6.4"
     }
   ]
 }
