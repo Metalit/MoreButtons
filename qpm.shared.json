@@ -7,7 +7,7 @@
     "info": {
       "name": "MoreButtons",
       "id": "morebuttons",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "url": null,
       "additionalData": {
         "overrideSoName": "libmorebuttons.so",
@@ -59,7 +59,7 @@
       },
       {
         "id": "bs-cordl",
-        "versionRange": "^4006.0.0",
+        "versionRange": "^4008.0.0",
         "additionalData": {}
       },
       {
@@ -92,10 +92,10 @@
     {
       "dependency": {
         "id": "bs-cordl",
-        "versionRange": "=4006.0.0",
+        "versionRange": "=4008.0.0",
         "additionalData": {
           "headersOnly": true,
-          "branchName": "version/v4006_0_0",
+          "branchName": "version/v4008_0_0",
           "compileOptions": {
             "includePaths": [
               "include"
@@ -111,7 +111,7 @@
           }
         }
       },
-      "version": "4006.0.0"
+      "version": "4008.0.0"
     },
     {
       "dependency": {
